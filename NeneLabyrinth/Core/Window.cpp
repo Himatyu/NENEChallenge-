@@ -50,7 +50,7 @@ namespace NeneLabyrinth
 
 		void Window::Create()
 		{
-			HWND hWnd = CreateWindow(className,	// 登録されているクラス名
+			hWnd = CreateWindow(className,	// 登録されているクラス名
 				windowName,						// ウィンドウ名
 				WS_OVERLAPPEDWINDOW,			// ウィンドウスタイル
 				x, 								// ウィンドウの横方向の位置
