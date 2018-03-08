@@ -116,9 +116,11 @@
   <ItemGroup>
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Rendering\Graphics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Window.h" />
+    <ClInclude Include="Rendering\Graphics.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

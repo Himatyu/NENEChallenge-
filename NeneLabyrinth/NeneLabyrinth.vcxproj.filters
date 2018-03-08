@@ -16,6 +16,9 @@
     <Filter Include="Core">
       <UniqueIdentifier>{d73bb53d-8ed2-4724-a7a4-4f3bac727057}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{72a73e17-c431-4695-9ab6-e0211babb821}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -24,10 +27,16 @@
     <ClCompile Include="Core\Window.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Graphics.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Window.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Graphics.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
