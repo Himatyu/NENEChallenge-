@@ -30,6 +30,9 @@
     <ClCompile Include="Rendering\Graphics.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Core\GamePad.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Window.h">
@@ -37,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="Rendering\Graphics.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GamePad.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
