@@ -1,11 +1,9 @@
 #include <windows.h>
 #include "Core/Window.h"
 #include"Rendering\Graphics.h"
+#include"Core/GamePad.h"
 
 using namespace NeneLabyrinth;
-
-#include<Xinput.h>
-#pragma comment (lib, "xinput.lib")
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 {
@@ -20,21 +18,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	Rendering::Graphics graphics(window, 640, 480);
 	graphics.Initialize();
 
-	XINPUT_STATE state;
-	XINPUT_VIBRATION vib{ 10000 ,10000 };
+	Core::GamePad pad;
 
 	while (!window.IsReceiveQuitMessage())
 	{
+		pad.UpdateInputState();
 
-		XInputGetState(0, &state);
-
-		if (state.Gamepad.wButtons & XINPUT_GAMEPAD_A)
+		if (pad.IsUp(pad.A))
 		{
-			XInputSetState(0, &vib);
-			XInputEnable(true);
+			pad.BeginVibration(30000, 3000);
 		}
 
-		if (state.Gamepad.wButtons & XINPUT_GAMEPAD_B)
+		if (pad.IsDown(pad.LeftStickLeft))
 		{
 			break;
 		}
@@ -45,8 +40,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 		//DO Rendring
 		graphics.Presetnt();
 	}
-
-	XInputEnable(false);
 
 	return 0;
 }
