@@ -64,7 +64,7 @@ namespace NeneLabyrinth
 
 			if (!hWnd)
 			{
-				// TODO Exception
+				___THROW_EXCEPTION(Utility::Exception, "ウィンドウ生成に失敗");
 				return;
 			}
 

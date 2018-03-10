@@ -1,5 +1,7 @@
 #include "GamePad.h"
 #include<math.h>
+
+#pragma comment (lib, "xinput.lib")
 namespace NeneLabyrinth
 {
 	namespace Core
@@ -10,7 +12,8 @@ namespace NeneLabyrinth
 		{
 			if (_index > 3)
 			{
-				return;//Err
+				___THROW_EXCEPTION(Utility::Exception, "API上限を超える使用数要求");
+				return;
 			}
 			inputState = {};
 			inputPreviousState = {};
@@ -65,26 +68,26 @@ namespace NeneLabyrinth
 			switch (_code)
 			{
 			case NeneLabyrinth::Core::GamePad::LeftTrigger:
-				value = _state.Gamepad.bLeftTrigger / 255;
+				value = _state.Gamepad.bLeftTrigger / 255.0f;
 				break;
 			case NeneLabyrinth::Core::GamePad::RightTrigger:
-				value = _state.Gamepad.bRightTrigger / 255;
+				value = _state.Gamepad.bRightTrigger / 255.0f;
 				break;
 			case NeneLabyrinth::Core::GamePad::LeftStickLeft: //1フレームで同時に押せるなら押して見なさいｗ
 			case NeneLabyrinth::Core::GamePad::LeftStickRight:
-				value = _state.Gamepad.sThumbLX / 32767;
+				value = _state.Gamepad.sThumbLX / 32767.0f;
 				break;
 			case NeneLabyrinth::Core::GamePad::LeftStickUp:
 			case NeneLabyrinth::Core::GamePad::LeftStickDown:
-				value = _state.Gamepad.sThumbLY / 32767;
+				value = _state.Gamepad.sThumbLY / 32767.0f;
 				break;
 			case NeneLabyrinth::Core::GamePad::RightStickLeft:
 			case NeneLabyrinth::Core::GamePad::RightStickRight:
-				value = _state.Gamepad.sThumbRX / 32767;
+				value = _state.Gamepad.sThumbRX / 32767.0f;
 				break;
 			case NeneLabyrinth::Core::GamePad::RightStickUp:
 			case NeneLabyrinth::Core::GamePad::RightStickDown:
-				value = _state.Gamepad.sThumbRY / 32767;
+				value = _state.Gamepad.sThumbRY / 32767.0f;
 				break;
 			default:
 				break;
@@ -103,7 +106,7 @@ namespace NeneLabyrinth
 
 		char GamePad::GetBitSignature(Code _code)
 		{
-			return (char)GetState(inputPreviousState, _code) << 1 + (char)GetState(inputState, _code);
+			return (((char)GetState(inputPreviousState, _code)) << 1) + (char)GetState(inputState, _code);
 		}
 
 

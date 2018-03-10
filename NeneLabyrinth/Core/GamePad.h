@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 #include<Xinput.h>
-#pragma comment (lib, "xinput.lib")
+
 
 namespace NeneLabyrinth
 {
