@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{276BCE5B-1EFF-43D5-95AB-06CC10A3C34E}</ProjectGuid>
     <RootNamespace>NeneLabyrinth</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -114,11 +114,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\GamePad.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering\Graphics.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\GamePad.h" />
     <ClInclude Include="Core\Window.h" />
     <ClInclude Include="Rendering\Graphics.h" />
   </ItemGroup>
