@@ -88,6 +88,8 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -97,7 +99,8 @@
       <SDLCheck>false</SDLCheck>
       <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,6 +112,8 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -124,7 +129,8 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
-      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -136,6 +142,12 @@
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering\Graphics.cpp" />
+    <ClCompile Include="Rendering\Material.cpp" />
+    <ClCompile Include="Rendering\MeshRender.cpp" />
+    <ClCompile Include="Rendering\Shader.cpp" />
+    <ClCompile Include="Resource\Entity\Material.cpp" />
+    <ClCompile Include="Resource\Entity\Mesh.cpp" />
+    <ClCompile Include="Resource\Entity\Shader.cpp" />
     <ClCompile Include="Utility\Debug.cpp" />
     <ClCompile Include="Utility\Exception.cpp" />
     <ClCompile Include="Utility\File.cpp" />
@@ -148,6 +160,13 @@
     <ClInclude Include="Core\GamePad.h" />
     <ClInclude Include="Core\Window.h" />
     <ClInclude Include="Rendering\Graphics.h" />
+    <ClInclude Include="Rendering\IRenderable.h" />
+    <ClInclude Include="Rendering\Material.h" />
+    <ClInclude Include="Rendering\MeshRender.h" />
+    <ClInclude Include="Rendering\Shader.h" />
+    <ClInclude Include="Resource\Entity\Material.h" />
+    <ClInclude Include="Resource\Entity\Mesh.h" />
+    <ClInclude Include="Resource\Entity\Shader.h" />
     <ClInclude Include="Utility\Debug.h" />
     <ClInclude Include="Utility\Estd.h" />
     <ClInclude Include="Utility\Exception.h" />
@@ -159,6 +178,8 @@
     <ClInclude Include="Utility\TimerServer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Rendering\Shader.inl" />
+    <None Include="Resource\Entity\Shader.inl" />
     <None Include="Utility\Singleton.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

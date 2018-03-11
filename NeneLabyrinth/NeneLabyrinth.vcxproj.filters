@@ -22,6 +22,12 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{193f5899-ecc5-4bd6-886a-cd65982837d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{ed0e5c9a-06ea-48d0-b138-71bd8031523c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Entity">
+      <UniqueIdentifier>{5f3f80b4-4634-44e5-9260-95e8823faddc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -56,6 +62,24 @@
     </ClCompile>
     <ClCompile Include="Utility\Singleton.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Material.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\MeshRender.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Entity\Material.cpp">
+      <Filter>Resource\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Entity\Mesh.cpp">
+      <Filter>Resource\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Entity\Shader.cpp">
+      <Filter>Resource\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,10 +119,37 @@
     <ClInclude Include="Utility\Singleton.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\Material.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\MeshRender.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Shader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Entity\Material.h">
+      <Filter>Resource\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Entity\Mesh.h">
+      <Filter>Resource\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Entity\Shader.h">
+      <Filter>Resource\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\IRenderable.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Utility\Singleton.inl">
       <Filter>Utility</Filter>
+    </None>
+    <None Include="Resource\Entity\Shader.inl">
+      <Filter>Resource\Entity</Filter>
+    </None>
+    <None Include="Rendering\Shader.inl">
+      <Filter>Rendering</Filter>
     </None>
   </ItemGroup>
 </Project>
