@@ -4,14 +4,15 @@
 #include <d3dx11.h>
 #include <d3dCompiler.h>
 
-
+#include"Singleton.h"
 #define SAFE_RELEASE(x) if(x){x->Release(); x=NULL;}
 
 namespace NeneLabyrinth
 {
 	namespace Rendering
 	{
-		class Graphics
+		class Graphics final :
+			public Utility::Singleton<Graphics>
 		{
 			HWND		hWnd;
 			int			width;
@@ -26,12 +27,16 @@ namespace NeneLabyrinth
 			ID3D11DepthStencilView* pBuckBuffer_DSTexDSV;
 
 		public:
-			Graphics(HWND _hWnd,
-				int			width,
-				int			height);
+			PROPERTY_R_ONLY(width, Width, int);
+			PROPERTY_R_ONLY(height, Height, int);
+			PROPERTY_R_ONLY(pDevice, Device, ID3D11Device*);
+			PROPERTY_R_ONLY(pDeviceContext, DeviceContext, ID3D11DeviceContext*);
+
 			~Graphics();
 
-			void Initialize();
+			void Initialize(HWND _hWnd,
+				int			width,
+				int			height);
 
 			void ClearBackBuffer();
 			void Presetnt();

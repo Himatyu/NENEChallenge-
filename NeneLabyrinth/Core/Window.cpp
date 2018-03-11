@@ -1,4 +1,5 @@
 #include "Window.h"
+#pragma comment(lib,"winmm.lib")
 
 namespace NeneLabyrinth
 {

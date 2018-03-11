@@ -9,13 +9,6 @@ namespace NeneLabyrinth
 {
 	namespace Rendering
 	{
-		Graphics::Graphics(HWND _hWnd, int _width, int _height) :
-			hWnd(_hWnd),
-			width(_width),
-			height(_height)
-		{
-		}
-
 		Graphics::~Graphics()
 		{
 			SAFE_RELEASE(pSwapChain);
@@ -27,8 +20,14 @@ namespace NeneLabyrinth
 			SAFE_RELEASE(pDeviceContext);
 		}
 
-		void Graphics::Initialize()
+		void Graphics::Initialize(HWND _hWnd,
+			int			_width,
+			int			_height)
 		{
+			hWnd = _hWnd;
+			width = _width;
+			height = _height;
+
 			// デバイスとスワップチェーンの作成
 			DXGI_SWAP_CHAIN_DESC sd;
 			ZeroMemory(&sd, sizeof(sd));
