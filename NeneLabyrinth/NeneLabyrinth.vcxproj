@@ -73,18 +73,34 @@
     <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
+      <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -93,7 +109,11 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -106,7 +126,11 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -118,11 +142,45 @@
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering\Graphics.cpp" />
+    <ClCompile Include="Rendering\Material.cpp" />
+    <ClCompile Include="Rendering\MeshRender.cpp" />
+    <ClCompile Include="Rendering\Shader.cpp" />
+    <ClCompile Include="Resource\Entity\Material.cpp" />
+    <ClCompile Include="Resource\Entity\Mesh.cpp" />
+    <ClCompile Include="Resource\Entity\Shader.cpp" />
+    <ClCompile Include="Utility\Debug.cpp" />
+    <ClCompile Include="Utility\Exception.cpp" />
+    <ClCompile Include="Utility\File.cpp" />
+    <ClCompile Include="Utility\Singleton.cpp" />
+    <ClCompile Include="Utility\TextFile.cpp" />
+    <ClCompile Include="Utility\Timer.cpp" />
+    <ClCompile Include="Utility\TimerServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\GamePad.h" />
     <ClInclude Include="Core\Window.h" />
     <ClInclude Include="Rendering\Graphics.h" />
+    <ClInclude Include="Rendering\IRenderable.h" />
+    <ClInclude Include="Rendering\Material.h" />
+    <ClInclude Include="Rendering\MeshRender.h" />
+    <ClInclude Include="Rendering\Shader.h" />
+    <ClInclude Include="Resource\Entity\Material.h" />
+    <ClInclude Include="Resource\Entity\Mesh.h" />
+    <ClInclude Include="Resource\Entity\Shader.h" />
+    <ClInclude Include="Utility\Debug.h" />
+    <ClInclude Include="Utility\Estd.h" />
+    <ClInclude Include="Utility\Exception.h" />
+    <ClInclude Include="Utility\File.h" />
+    <ClInclude Include="Utility\Macro.h" />
+    <ClInclude Include="Utility\Singleton.h" />
+    <ClInclude Include="Utility\TextFile.h" />
+    <ClInclude Include="Utility\Timer.h" />
+    <ClInclude Include="Utility\TimerServer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Rendering\Shader.inl" />
+    <None Include="Resource\Entity\Shader.inl" />
+    <None Include="Utility\Singleton.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,7 +11,7 @@ namespace NeneLabyrinth
 		class Window final
 		{
 			HWND		hWnd;
-			HINSTANCE hInstance;
+			HINSTANCE	hInstance;
 			LPCTSTR		windowName;
 			LPCTSTR		className;
 			int			width;

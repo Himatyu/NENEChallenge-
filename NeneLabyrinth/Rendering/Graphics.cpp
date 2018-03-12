@@ -1,16 +1,14 @@
 #include "Graphics.h"
 
+#pragma comment(lib,"d3d11.lib")
+#pragma comment(lib,"d3dx10.lib")
+#pragma comment(lib,"d3dx11.lib")
+#pragma comment(lib,"d3dCompiler.lib")
+
 namespace NeneLabyrinth
 {
 	namespace Rendering
 	{
-		Graphics::Graphics(HWND _hWnd, int _width, int _height) :
-			hWnd(_hWnd),
-			width(_width),
-			height(_height)
-		{
-		}
-
 		Graphics::~Graphics()
 		{
 			SAFE_RELEASE(pSwapChain);
@@ -22,8 +20,14 @@ namespace NeneLabyrinth
 			SAFE_RELEASE(pDeviceContext);
 		}
 
-		void Graphics::Initialize()
+		void Graphics::Initialize(HWND _hWnd,
+			int			_width,
+			int			_height)
 		{
+			hWnd = _hWnd;
+			width = _width;
+			height = _height;
+
 			// デバイスとスワップチェーンの作成
 			DXGI_SWAP_CHAIN_DESC sd;
 			ZeroMemory(&sd, sizeof(sd));
@@ -46,14 +50,12 @@ namespace NeneLabyrinth
 				0, &pFeatureLevels, 1, D3D11_SDK_VERSION, &sd, &pSwapChain, &pDevice,
 				pFeatureLevel, &pDeviceContext)))
 			{
-				//TODO Excption
-				return;
+				___THROW_EXCEPTION(Utility::Exception, "D3D11CreateDeviceAndSwapChainに失敗");
 			}
 
 			//バックバッファからテクスチャ取得
 			pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer_Tex);
 			pDevice->CreateRenderTargetView(pBackBuffer_Tex, NULL, &pBackBuffer_TexRTV);
-
 
 			//デプスステンシルビュー用のテクスチャーを作成
 			D3D11_TEXTURE2D_DESC descDepth;

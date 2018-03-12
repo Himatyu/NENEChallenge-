@@ -1,4 +1,5 @@
 #include "Window.h"
+#pragma comment(lib,"winmm.lib")
 
 namespace NeneLabyrinth
 {
@@ -64,7 +65,7 @@ namespace NeneLabyrinth
 
 			if (!hWnd)
 			{
-				// TODO Exception
+				___THROW_EXCEPTION(Utility::Exception, "ウィンドウ生成に失敗");
 				return;
 			}
 
