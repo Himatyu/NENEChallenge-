@@ -20,13 +20,18 @@ namespace NeneLabyrinth
 			UINT stride = meshEntity.SizeOfVertex;
 			UINT offset = meshEntity.Offset;
 
-			auto buffer = meshEntity.VertexBuffer;
-			graphics.DeviceContext->IASetVertexBuffers(0, 1, &buffer, &stride, &offset);
+			graphics.DeviceContext->IASetVertexBuffers(0, 1, &meshEntity.VertexBuffer, &stride, &offset);
+
+			stride = sizeof(int);
+			offset = 0;
+			graphics.DeviceContext->IASetIndexBuffer(meshEntity.IndexBuffer, DXGI_FORMAT_R32_UINT, 0);
+
 
 			//プリミティブ・トポロジーをセット
 			graphics.DeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 			//プリミティブをレンダリング
-			graphics.DeviceContext->Draw(meshEntity.VertexCont, 0);
+			graphics.DeviceContext->DrawIndexed(meshEntity.FaceCont * 3, 0, 0);
+
 		}
 	}
 }

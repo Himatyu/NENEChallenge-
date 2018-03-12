@@ -13,15 +13,20 @@ namespace NeneLabyrinth
 			class Mesh
 			{
 				ID3D11Buffer* pVertexBuffer;
+				ID3D11Buffer* pIndexBuffer;
 				size_t vertexSize;
 				size_t offset;
 				size_t vertexCont;
-
+				size_t faceCont;
+				std::string name;
 			public:
-				PROPERTY_R_ONLY(pVertexBuffer, VertexBuffer, ID3D11Buffer*);
-				PROPERTY_R_ONLY(vertexSize, SizeOfVertex, size_t);
-				PROPERTY_R_ONLY(offset, Offset, size_t);
-				PROPERTY_R_ONLY(vertexCont, VertexCont, size_t);
+				PROPERTY_REF_R_ONLY(pVertexBuffer, VertexBuffer, ID3D11Buffer*);
+				PROPERTY_REF_R_ONLY(pIndexBuffer, IndexBuffer, ID3D11Buffer*);
+				PROPERTY_REF(vertexSize, SizeOfVertex, size_t);
+				PROPERTY_REF(offset, Offset, size_t);
+				PROPERTY_REF(vertexCont, VertexCont, size_t);
+				PROPERTY_REF(faceCont, FaceCont, size_t);
+				PROPERTY_REF(name, Name, std::string);
 
 				Mesh();
 				~Mesh();

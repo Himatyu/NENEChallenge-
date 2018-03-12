@@ -29,8 +29,8 @@ namespace NeneLabyrinth
 		public:
 			PROPERTY_R_ONLY(width, Width, int);
 			PROPERTY_R_ONLY(height, Height, int);
-			PROPERTY_R_ONLY(pDevice, Device, ID3D11Device*);
-			PROPERTY_R_ONLY(pDeviceContext, DeviceContext, ID3D11DeviceContext*);
+			PROPERTY_REF_R_ONLY(pDevice, Device, ID3D11Device*);
+			PROPERTY_REF_R_ONLY(pDeviceContext, DeviceContext, ID3D11DeviceContext*);
 
 			~Graphics();
 
