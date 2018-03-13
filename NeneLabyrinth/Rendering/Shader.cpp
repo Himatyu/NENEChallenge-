@@ -1,5 +1,6 @@
 #include "Shader.h"
 #include"Graphics.h"
+#include "..\Resource\Dao\Shader.h"
 namespace NeneLabyrinth
 {
 	namespace Rendering

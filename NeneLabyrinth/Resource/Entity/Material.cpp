@@ -7,12 +7,14 @@ namespace NeneLabyrinth
 	{
 		namespace Entity
 		{
-			Material::Material(Shader* _shader)
+			Material::Material(std::shared_ptr<DTO> _spDto) :
+				Base(_spDto)
 			{
-				Diffuse = Ambient = Specular = Emissive = { };
-				Power = 0;
-
-				pShader = _shader;
+				Diffuse = _spDto->Diffuse;
+				Ambient = _spDto->Ambient;
+				Specular = _spDto->Specular;
+				Emissive = _spDto->Emissive;
+				Power = _spDto->Power;
 			}
 
 			Material::~Material()

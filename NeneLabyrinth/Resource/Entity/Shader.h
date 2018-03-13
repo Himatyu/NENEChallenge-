@@ -4,6 +4,8 @@
 #include <d3dx11.h>
 #include <d3dCompiler.h>
 #include"File.h"
+#include"Base.h"
+#include"../Dao/Shader.h"
 
 namespace NeneLabyrinth
 {
@@ -11,9 +13,9 @@ namespace NeneLabyrinth
 	{
 		namespace Entity
 		{
-			//TODO Serviceから作成
 			//今回はvs.ps同ファイルで扱い、psに固定バッファを使用しない
-			class Shader final
+			class Shader final :
+				public Base<Dao::Shader>
 			{
 				ID3D11InputLayout* pVertexLayout;
 				ID3D11VertexShader* pVertexShader;
@@ -25,7 +27,7 @@ namespace NeneLabyrinth
 				PROPERTY_REF_R_ONLY(pPixelShader, PixelShader, ID3D11PixelShader*);
 				PROPERTY_REF_R_ONLY(pConstantBuffer, ConstantBuffer, ID3D11Buffer*);
 
-				Shader(std::string _filePath);
+				Shader(std::shared_ptr<DTO> _spDto);
 				~Shader();
 
 				template<class Buffer>
