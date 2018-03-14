@@ -3,23 +3,15 @@
 #include <d3dx10.h>
 #include <d3dx11.h>
 
-#include"Base.h"
-#include"../Dto/Material.h"
-#include"../Dao/Material.h"
-
 namespace NeneLabyrinth
 {
 	namespace Resource
 	{
-		namespace Entity
+		namespace Dto
 		{
-			class Shader;
-
-			class Material final :
-				public Base<Dao::Material>
+			class Material
 			{
 			public:
-
 				D3DXVECTOR4 Diffuse;
 				D3DXVECTOR4 Ambient;
 				D3DXVECTOR4 Specular;
@@ -28,9 +20,6 @@ namespace NeneLabyrinth
 
 				std::string Name;
 				std::string MaterialFile;
-
-				Material(std::shared_ptr<DTO> _spDto);
-				~Material();
 			};
 		}
 	}

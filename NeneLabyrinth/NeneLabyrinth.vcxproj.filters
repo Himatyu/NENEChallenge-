@@ -28,6 +28,12 @@
     <Filter Include="Resource\Entity">
       <UniqueIdentifier>{5f3f80b4-4634-44e5-9260-95e8823faddc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource\Dao">
+      <UniqueIdentifier>{1a369b96-a7a2-4888-9872-e149cb1954d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Dto">
+      <UniqueIdentifier>{c502242a-a891-438f-979a-d8a0c0bd784b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -79,6 +85,21 @@
       <Filter>Resource\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Resource\Entity\Shader.cpp">
+      <Filter>Resource\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Dao\Mesh.cpp">
+      <Filter>Resource\Dao</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Estd.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Dao\Shader.cpp">
+      <Filter>Resource\Dao</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Dao\Material.cpp">
+      <Filter>Resource\Dao</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Entity\Base.cpp">
       <Filter>Resource\Entity</Filter>
     </ClCompile>
   </ItemGroup>
@@ -139,6 +160,33 @@
     </ClInclude>
     <ClInclude Include="Rendering\IRenderable.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Entity\Base.h">
+      <Filter>Resource\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Service.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Dto\Material.h">
+      <Filter>Resource\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Dto\Mesh.h">
+      <Filter>Resource\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Dto\Shader.h">
+      <Filter>Resource\Dto</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Dao\Material.h">
+      <Filter>Resource\Dao</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Dao\Mesh.h">
+      <Filter>Resource\Dao</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Dao\Shader.h">
+      <Filter>Resource\Dao</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Dao\Base.h">
+      <Filter>Resource\Dao</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

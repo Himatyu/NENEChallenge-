@@ -2,6 +2,13 @@
 #include<algorithm>
 #include<functional>
 #include<numeric>
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+
 namespace NeneLabyrinth
 {
 	namespace Utility
@@ -180,6 +187,8 @@ namespace NeneLabyrinth
 					}
 				}
 			}
+
+			std::vector<std::string> Split(const std::string& _input, char _delimiter);
 		}
 	}
 }

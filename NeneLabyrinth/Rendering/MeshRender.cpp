@@ -17,7 +17,7 @@ namespace NeneLabyrinth
 
 			auto& graphics = Rendering::Graphics::Instantiate();
 
-			UINT stride = meshEntity.SizeOfVertex;
+			UINT stride = meshEntity.VertexSize;
 			UINT offset = meshEntity.Offset;
 
 			graphics.DeviceContext->IASetVertexBuffers(0, 1, &meshEntity.VertexBuffer, &stride, &offset);

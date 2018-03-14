@@ -7,17 +7,18 @@ namespace NeneLabyrinth
 	{
 		namespace Entity
 		{
-			Shader::Shader(std::string _filePath)
+			Shader::Shader(std::shared_ptr<DTO> _spDto) :
+				Base(_spDto)
 			{
 				auto& graphics = Rendering::Graphics::Instantiate();
-
+				auto filePath = _spDto->filePath;
 				//Blobはデータバッファ
 				ID3DBlob *pCompiledShader = NULL;
 				ID3DBlob *pErrors = NULL;
 
 				//ファイルからシェーダ読み込み
 				if (FAILED(D3DX11CompileFromFile(
-					_filePath.c_str(),
+					filePath.c_str(),
 					NULL,
 					NULL,
 					"VS",
@@ -62,7 +63,7 @@ namespace NeneLabyrinth
 
 				//ブロブからピクセルシェーダー作成
 				if (FAILED(D3DX11CompileFromFile(
-					_filePath.c_str(),
+					filePath.c_str(),
 					NULL,
 					NULL,
 					"PS",
