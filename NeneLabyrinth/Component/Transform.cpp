@@ -21,7 +21,8 @@ namespace NeneLabyrinth
 			return D3DXVECTOR3(world._31, world._32, world._33);
 		}
 
-		Transform::Transform() :
+		Transform::Transform(Behavior& _owner) :
+			IBehavior(_owner, typeid(Transform)),
 			position(0, 0, 0),
 			rotate(0, 0, 0),
 			scale(1, 1, 1)
