@@ -90,6 +90,7 @@
       <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -101,6 +102,7 @@
       <AdditionalIncludeDirectories>Utility</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -114,6 +116,7 @@
       <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,6 +134,7 @@
       <ForcedIncludeFiles>"Macro.h";"Exception.h";"Debug.h"</ForcedIncludeFiles>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -138,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component\Behavior.cpp" />
     <ClCompile Include="Component\IBehavior.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
     <ClCompile Include="Core\GamePad.cpp" />
@@ -164,6 +169,7 @@
     <ClCompile Include="Utility\TimerServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Behavior.h" />
     <ClInclude Include="Component\IBehavior.h" />
     <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Core\GamePad.h" />
@@ -196,6 +202,7 @@
     <ClInclude Include="Utility\TimerServer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Component\Behavior.inl" />
     <None Include="Rendering\Shader.inl" />
     <None Include="Resource\Entity\Shader.inl" />
     <None Include="Utility\Singleton.inl" />

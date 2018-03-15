@@ -111,6 +111,9 @@
     <ClCompile Include="Component\IBehavior.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="Component\Behavior.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Window.h">
@@ -203,6 +206,9 @@
     <ClInclude Include="Component\Transform.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="Component\Behavior.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Utility\Singleton.inl">
@@ -213,6 +219,9 @@
     </None>
     <None Include="Rendering\Shader.inl">
       <Filter>Rendering</Filter>
+    </None>
+    <None Include="Component\Behavior.inl">
+      <Filter>Component</Filter>
     </None>
   </ItemGroup>
 </Project>
