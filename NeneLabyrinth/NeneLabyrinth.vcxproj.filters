@@ -34,6 +34,9 @@
     <Filter Include="Resource\Dto">
       <UniqueIdentifier>{c502242a-a891-438f-979a-d8a0c0bd784b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{31a89fad-7039-4405-8972-93ed76d3abed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -101,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="Resource\Entity\Base.cpp">
       <Filter>Resource\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Transform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\IBehavior.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +196,12 @@
     </ClInclude>
     <ClInclude Include="Resource\Dao\Base.h">
       <Filter>Resource\Dao</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\IBehavior.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Transform.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

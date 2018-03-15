@@ -138,6 +138,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component\IBehavior.cpp" />
+    <ClCompile Include="Component\Transform.cpp" />
     <ClCompile Include="Core\GamePad.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -162,6 +164,8 @@
     <ClCompile Include="Utility\TimerServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\IBehavior.h" />
+    <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Core\GamePad.h" />
     <ClInclude Include="Core\Window.h" />
     <ClInclude Include="Rendering\Graphics.h" />

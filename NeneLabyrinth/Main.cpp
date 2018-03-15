@@ -16,6 +16,7 @@
 #include"Resource\Entity\Mesh.h"
 #include"Resource\Entity\Shader.h"
 #include"Resource\Service.h"
+#include"Component\Transform.h"
 #include<vector>
 
 using namespace NeneLabyrinth;
@@ -71,13 +72,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 		Rendering::Material material(*materialEntity, shader);
 		Rendering::MeshRender mesh(*meshEntity, material);
 
+		Component::Transform transform;
+
 		while (!window.IsReceiveQuitMessage())
 		{
 			pad.UpdateInputState();
 
-			if (pad.IsUp(pad.A))
+			if (pad.IsInput(pad.A))
 			{
-				pad.BeginVibration(30000, 3000);
 			}
 
 			if (pad.IsDown(pad.LeftStickLeft))
@@ -87,12 +89,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 
 
 			//DO Update
+			transform.Rotation.y = timeGetTime() / 100.0f;
+			transform.Scale.y = sin(timeGetTime() / 100.0f);
 
-			D3DXMATRIX World;
+			transform.Update();
+
+
 			D3DXMATRIX View;
 			D3DXMATRIX Proj;
 			//ワールドトランスフォーム
-			D3DXMatrixRotationY(&World, timeGetTime() / 1100.0f);
 			// ビュートランスフォーム
 			D3DXVECTOR3 vEyePt(0.0f, 3.0f, -4.0f); //視点位置
 			D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);//注視位置
@@ -100,8 +105,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 			D3DXMatrixLookAtLH(&View, &vEyePt, &vLookatPt, &vUpVec);
 			// プロジェクショントランスフォーム
 			D3DXMatrixPerspectiveFovLH(&Proj, D3DX_PI / 4, (FLOAT)640 / (FLOAT)480, 0.1f, 100.0f);
+
 			//使用するシェーダーのセット
-			D3DXMATRIX m = World*View*Proj;
+			D3DXMATRIX m = transform.World *View*Proj;
 			D3DXMatrixTranspose(&m, &m);
 			shader.DatePush<D3DXMATRIX>(&m);
 
