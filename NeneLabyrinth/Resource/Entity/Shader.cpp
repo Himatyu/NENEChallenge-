@@ -28,7 +28,7 @@ namespace NeneLabyrinth
 					NULL,
 					&pCompiledShader, &pErrors, NULL)))
 				{
-					___THROW_EXCEPTION_POINT(Utility::Exception, "シェーダ読み込みに失敗");
+					___THROW_EXCEPTION_POINT(Utility::Exception, (char*)pErrors->GetBufferPointer());
 				}
 				SAFE_RELEASE(pErrors);
 
