@@ -30,6 +30,8 @@ using namespace NeneLabyrinth::Resource;
 #include <sstream>
 #include <vector>
 
+#include "Component\Behavior.h"
+
 struct ConstantBuffer
 {
 	D3DXMATRIX WVP;
@@ -72,7 +74,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 		Rendering::Material material(*materialEntity, shader);
 		Rendering::MeshRender mesh(*meshEntity, material);
 
-		Component::Transform transform;
+		Component::Behavior behavior;
+		auto& transform = behavior.AddComponent<Component::Transform>();
+		behavior.RemoveComponents<Component::Transform>();
 
 		while (!window.IsReceiveQuitMessage())
 		{
@@ -89,11 +93,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 
 
 			//DO Update
-			transform.Rotation.y = timeGetTime() / 100.0f;
-			transform.Scale.y = sin(timeGetTime() / 100.0f);
+			transform->Rotation.y = timeGetTime() / 100.0f;
+			transform->Scale.y = sin(timeGetTime() / 100.0f);
 
-			transform.Update();
-
+			behavior.Update();
 
 			D3DXMATRIX View;
 			D3DXMATRIX Proj;
@@ -107,7 +110,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 			D3DXMatrixPerspectiveFovLH(&Proj, D3DX_PI / 4, (FLOAT)640 / (FLOAT)480, 0.1f, 100.0f);
 
 			//使用するシェーダーのセット
-			D3DXMATRIX m = transform.World *View*Proj;
+			D3DXMATRIX m = transform->World *View*Proj;
 			D3DXMatrixTranspose(&m, &m);
 			shader.DatePush<D3DXMATRIX>(&m);
 
