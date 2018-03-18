@@ -1,24 +1,34 @@
 
 cbuffer global
 {
-	matrix g_mWVP; //ワールド、ビュー、射影の合成変換行列
+	matrix W;//ワールド行列
+	matrix WVP; //ワールドから射影までの変換行列
+	float4 LightDir;  //ライトの方向ベクトル
+	float4 Ambient = float4(0, 0, 0, 0);//アンビエント光
+	float4 Diffuse = float4(1, 0, 0, 0); //拡散反射(色）
+	float4 Specular = float4(1, 1, 1, 1);//鏡面反射
 };
 
 struct VS_OUTPUT
 {
 	float4 Pos : SV_POSITION;
 	float4 Normal : NORMAL;
+	float4 Light : TEXCOORD0;
 };
 
-float4 VS(float4 Pos : POSITION ,float4 Normal : NORMAL) : SV_POSITION
+VS_OUTPUT VS(float4 Pos : POSITION, float4 Normal : NORMAL)
 {
 	VS_OUTPUT vo;
-	vo.Pos = mul(Pos,g_mWVP);
-	return vo.Pos;
+	vo.Pos = mul(Pos, WVP);
+	vo.Normal = mul(Normal, W);
+	vo.Light = LightDir;
+	return vo;
 }
 
-float4 PS(float4 Pos : SV_POSITION) : SV_Target
+float4 PS(VS_OUTPUT input) : SV_Target
 {
-	float4 color = float4(1,0,0,0);
-	return color;
+	float4 Normal = normalize(input.Normal);
+	float4 Light = normalize(input.Light);
+	float4 Lambert = saturate(dot(Normal, Light));
+	return Diffuse *Lambert;
 }

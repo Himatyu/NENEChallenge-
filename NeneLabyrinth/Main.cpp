@@ -34,7 +34,12 @@ using namespace NeneLabyrinth::Resource;
 
 struct ConstantBuffer
 {
+	D3DXMATRIX W;//ワールド行列
 	D3DXMATRIX WVP;
+	D3DXVECTOR4 LightDir;  //ライトの方向ベクトル
+	D3DXVECTOR4 Ambient;//アンビエント光
+	D3DXVECTOR4 Diffuse; //拡散反射(色）
+	D3DXVECTOR4 Specular;//鏡面反射
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
@@ -68,7 +73,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 		auto materialEntity =
 			service.CreateEntity<Entity::Material>("untitled.object");
 
-		shaderEntity->CreateConstantBuffer<D3DXMATRIX>();
+		shaderEntity->CreateConstantBuffer<ConstantBuffer>();
 
 		Rendering::Shader shader(*shaderEntity);
 		Rendering::Material material(*materialEntity, shader);
@@ -94,7 +99,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 
 			//DO Update
 			transform->Rotation.y = timeGetTime() / 100.0f;
-			transform->Scale.y = sin(timeGetTime() / 100.0f);
+			//transform->Scale.y = sin(timeGetTime() / 100.0f);
 
 			behavior.Update();
 
@@ -112,7 +117,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 			//使用するシェーダーのセット
 			D3DXMATRIX m = transform->World *View*Proj;
 			D3DXMatrixTranspose(&m, &m);
-			shader.DatePush<D3DXMATRIX>(&m);
+
+			ConstantBuffer buffer;
+			buffer.WVP = m;
+			buffer.W = transform->World;
+
+			buffer.Ambient = materialEntity->Ambient;
+			buffer.Diffuse = materialEntity->Diffuse;
+			buffer.Specular = materialEntity->Specular;
+
+			buffer.LightDir = D3DXVECTOR4(0, 0, 1, 1);
+
+			shader.DatePush<ConstantBuffer>(&buffer);
 
 			graphics.ClearBackBuffer();
 
