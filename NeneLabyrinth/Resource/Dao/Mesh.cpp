@@ -11,6 +11,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <unordered_map>
 
 namespace NeneLabyrinth
 {
@@ -87,14 +88,37 @@ namespace NeneLabyrinth
 				}
 
 				spDto->Name = Name;
-				spDto->VertexCont = vertexCount;
 				spDto->VertexSize = sizeof(Vertex);
 				spDto->FaceCont = faceCount;
 
-				spDto->VertexBuffer.resize(spDto->VertexCont);
-
 				fileStream.clear();
 				fileStream.seekg(0, std::ios_base::beg);
+
+				using data = std::pair<Vertex, int>;
+
+				std::unordered_map < std::string, data> vertexMap;
+				using mapValue = std::unordered_map < std::string, data>::value_type;
+				int index = 0;
+
+				auto& registerBuffer =
+					[&index, &vertexMap, &spDto](std::string _signature, Vertex& _vertex)
+				{
+					auto findResult = Utility::Estd::find_if(
+						vertexMap,
+						[_signature](mapValue& _)
+					{
+						return _.first == _signature;
+					});
+
+					if (findResult == std::end(vertexMap))
+					{
+						auto record = std::make_pair(_vertex, index++);
+						vertexMap.insert(std::make_pair(_signature, record));
+						spDto->FaceBuffer.push_back(record.second);
+						return;
+					}
+					spDto->FaceBuffer.push_back(findResult->second.second);
+				};
 
 				while (getline(fileStream, line))
 				{
@@ -151,10 +175,6 @@ namespace NeneLabyrinth
 						auto v2Index = std::atoi(vertex2[0].c_str()) - 1;
 						auto v3Index = std::atoi(vertex3[0].c_str()) - 1;
 
-						spDto->FaceBuffer.push_back(v1Index);
-						spDto->FaceBuffer.push_back(v2Index);
-						spDto->FaceBuffer.push_back(v3Index);
-
 						Vertex v1, v2, v3;
 
 						v1.position = spDto->Coord[std::atoi(vertex1[0].c_str()) - 1];
@@ -164,12 +184,23 @@ namespace NeneLabyrinth
 						v2.normal = spDto->Normal[std::atoi(vertex2[2].c_str()) - 1];
 						v3.normal = spDto->Normal[std::atoi(vertex3[2].c_str()) - 1];
 
-						spDto->VertexBuffer[v1Index] = v1;
-						spDto->VertexBuffer[v2Index] = v2;
-						spDto->VertexBuffer[v3Index] = v3;
+
+						registerBuffer(splitedVertex[1], v1);
+						registerBuffer(splitedVertex[2], v2);
+						registerBuffer(splitedVertex[3], v3);
 
 						continue;
 					}
+				}
+
+				spDto->VertexBuffer.resize(vertexMap.size());
+				spDto->VertexCont = vertexMap.size();
+
+				for (auto& _ : vertexMap)
+				{
+					auto& record = _.second;
+
+					spDto->VertexBuffer[record.second] = record.first;
 				}
 
 				return spDto;

@@ -1,6 +1,5 @@
 #include "Behavior.h"
 #include "Estd.h"
-#include "BehaviorAdministrator.h"
 #include<typeindex>
 
 namespace NeneLabyrinth
