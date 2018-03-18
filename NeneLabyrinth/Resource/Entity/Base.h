@@ -11,8 +11,8 @@ namespace NeneLabyrinth
 			class Base
 			{
 			protected:
-				std::shared_ptr<typename Dao::DTO> spDto;
 			public:
+				std::shared_ptr<typename Dao::DTO> spDto;//TODO ê›åv
 				using DAO = Dao;
 				using DTO = typename Dao::DTO;
 
