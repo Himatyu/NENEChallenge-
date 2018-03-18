@@ -67,11 +67,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 		auto& service = Service::Instantiate();
 
 		auto meshEntity =
-			service.CreateEntity<Entity::Mesh>("untitled.object");
+			service.CreateEntity<Entity::Mesh>("box.object");
 		auto shaderEntity =
 			service.CreateEntity<Entity::Shader>("Simple.hlsl");
 		auto materialEntity =
-			service.CreateEntity<Entity::Material>("untitled.object");
+			service.CreateEntity<Entity::Material>("box.object");
 
 		shaderEntity->CreateConstantBuffer<ConstantBuffer>();
 
@@ -107,7 +107,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 			D3DXMATRIX Proj;
 			//ワールドトランスフォーム
 			// ビュートランスフォーム
-			D3DXVECTOR3 vEyePt(0.0f, 3.0f, -4.0f); //視点位置
+			D3DXVECTOR3 vEyePt(0.0f, 1, -10); //視点位置
 			D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);//注視位置
 			D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);//上方位置
 			D3DXMatrixLookAtLH(&View, &vEyePt, &vLookatPt, &vUpVec);
@@ -120,13 +120,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 
 			ConstantBuffer buffer;
 			buffer.WVP = m;
-			buffer.W = transform->World;
+
+			D3DXMATRIX m2 = transform->World;
+			D3DXMatrixTranspose(&m2, &m2);
+			buffer.W = m2;
 
 			buffer.Ambient = materialEntity->Ambient;
-			buffer.Diffuse = materialEntity->Diffuse;
+			buffer.Diffuse = D3DXVECTOR4(1, 0.5, 1, 1);//materialEntity->Diffuse;
 			buffer.Specular = materialEntity->Specular;
 
-			buffer.LightDir = D3DXVECTOR4(0, 0, 1, 1);
+			buffer.LightDir = D3DXVECTOR4(0, 0, -1, 1);
 
 			shader.DatePush<ConstantBuffer>(&buffer);
 

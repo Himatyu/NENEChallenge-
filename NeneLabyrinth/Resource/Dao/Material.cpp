@@ -17,7 +17,7 @@ namespace NeneLabyrinth
 			std::shared_ptr<Dto::Material> Material::From(std::string _filePath)
 			{
 				auto spDto = std::make_shared<Dto::Material>();
-
+				return spDto;
 				std::ifstream fileStream(_filePath);
 
 				if (fileStream.fail())
