@@ -1,4 +1,5 @@
 #pragma once
+
 namespace NeneLabyrinth
 {
 	namespace Rendering

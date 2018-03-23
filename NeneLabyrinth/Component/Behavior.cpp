@@ -1,4 +1,5 @@
 #include "Behavior.h"
+#include "../Provider/BehaviorProvider.h"
 #include "Estd.h"
 #include<typeindex>
 
@@ -9,11 +10,12 @@ namespace NeneLabyrinth
 		Behavior::Behavior() :
 			IBehavior(*this, typeid(IBehavior))
 		{
+			BehaviorProvider::Instantiate().Register(this);
 		}
 
 		Behavior::~Behavior()
 		{
-
+			BehaviorProvider::Instantiate().UnRegister(this);
 		}
 
 		void Behavior::Update()

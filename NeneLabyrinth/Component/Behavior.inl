@@ -5,7 +5,7 @@ Behavior::AddComponent(Param && ..._param)
 {
 	//コンポーネントは第一引数にOwnerを必ず持つ
 	auto spCom =
-		std::make_shared<Type>(*this, _ std::forward<Param>(param)...);
+		std::make_shared<Type>(*this, std::forward<Param>(_param)...);
 
 	components.push_back(spCom);
 

@@ -5,14 +5,33 @@ namespace NeneLabyrinth
 {
 	namespace Rendering
 	{
-		class Material
+		class IMaterial
 		{
-			Resource::Entity::Material& entity;
-			Shader& shader;
+		protected:
+			IShader& shader;
 		public:
-			Material(Resource::Entity::Material& entity, Shader& _shader);
+			IMaterial(IShader& _shader);
+			virtual void Apply() = 0;
+		};
 
-			void Apply();
+		class Material :
+			public IMaterial
+		{
+			D3DXVECTOR4 diffuse;
+			D3DXVECTOR4 ambient;
+			D3DXVECTOR4 specular;
+			D3DXVECTOR4 emissive;
+			float power;
+		public:
+			PROPERTY_REF(diffuse, Diffuse, D3DXVECTOR4);
+			PROPERTY_REF(ambient, Ambient, D3DXVECTOR4);
+			PROPERTY_REF(specular, Specular, D3DXVECTOR4);
+			PROPERTY_REF(emissive, Emissive, D3DXVECTOR4);
+			PROPERTY_REF(power, Power, float);
+
+			Material(std::string _objPath, IShader& _shader);
+
+			void Apply() override;
 
 		};
 	}
