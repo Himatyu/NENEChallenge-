@@ -143,13 +143,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Collision\Shape.cpp" />
-    <ClCompile Include="Component\Behavior.cpp" />
-    <ClCompile Include="Component\Camera.cpp" />
     <ClCompile Include="Component\Colldee.cpp" />
+    <ClCompile Include="Component\Object.cpp" />
+    <ClCompile Include="Component\Camera.cpp" />
     <ClCompile Include="Component\IBehavior.cpp" />
     <ClCompile Include="Component\MeshRender.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
+    <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\GamePad.cpp" />
+    <ClCompile Include="Core\Scene.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering\Graphics.cpp" />
@@ -174,13 +176,15 @@
   <ItemGroup>
     <ClInclude Include="Collision\Collider.h" />
     <ClInclude Include="Collision\Shape.h" />
-    <ClInclude Include="Component\Behavior.h" />
+    <ClInclude Include="Component\Object.h" />
     <ClInclude Include="Component\Camera.h" />
     <ClInclude Include="Component\Colldee.h" />
     <ClInclude Include="Component\IBehavior.h" />
     <ClInclude Include="Component\MeshRender.h" />
     <ClInclude Include="Component\Transform.h" />
+    <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\GamePad.h" />
+    <ClInclude Include="Core\Scene.h" />
     <ClInclude Include="Core\Window.h" />
     <ClInclude Include="Provider\BehaviorProvider.h" />
     <ClInclude Include="Provider\CameraProvider.h" />
@@ -215,7 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Collision\Collider.inl" />
-    <None Include="Component\Behavior.inl" />
+    <None Include="Component\Object.inl" />
     <None Include="Component\Colldee.inl" />
     <None Include="Rendering\Shader.inl" />
     <None Include="Utility\Singleton.inl" />

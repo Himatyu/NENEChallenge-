@@ -111,9 +111,6 @@
     <ClCompile Include="Component\IBehavior.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Behavior.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="Component\MeshRender.cpp">
       <Filter>Component</Filter>
     </ClCompile>
@@ -126,8 +123,17 @@
     <ClCompile Include="Collision\Shape.cpp">
       <Filter>Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Component\Object.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Scene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
     <ClCompile Include="Component\Colldee.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,9 +224,6 @@
     <ClInclude Include="Component\Transform.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Behavior.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Component\MeshRender.h">
       <Filter>Component</Filter>
     </ClInclude>
@@ -251,6 +254,15 @@
     <ClInclude Include="Provider\CollisionProvider.h">
       <Filter>Provider</Filter>
     </ClInclude>
+    <ClInclude Include="Component\Object.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Application.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Scene.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Utility\Singleton.inl">
@@ -259,13 +271,13 @@
     <None Include="Rendering\Shader.inl">
       <Filter>Rendering</Filter>
     </None>
-    <None Include="Component\Behavior.inl">
-      <Filter>Component</Filter>
-    </None>
     <None Include="Collision\Collider.inl">
       <Filter>Collision</Filter>
     </None>
     <None Include="Component\Colldee.inl">
+      <Filter>Component</Filter>
+    </None>
+    <None Include="Component\Object.inl">
       <Filter>Component</Filter>
     </None>
   </ItemGroup>
