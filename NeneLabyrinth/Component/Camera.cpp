@@ -1,14 +1,14 @@
 #include "Camera.h"
 #include "../Provider/CameraProvider.h"
 #include "../Component/IBehavior.h"
-#include "../Component/Behavior.h"
+#include "../Component/Object.h"
 #include "../Component/Transform.h"
 namespace NeneLabyrinth
 {
 	namespace Component
 	{
-		Camera::Camera(Behavior & _owner) :
-			IBehavior(_owner, typeid(Camera))
+		Camera::Camera(Object & _owner) :
+			Behavior(_owner, typeid(Camera))
 		{
 			CameraProvider::Instantiate().Register(this);
 		}

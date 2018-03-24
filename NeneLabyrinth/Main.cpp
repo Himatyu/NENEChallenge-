@@ -2,6 +2,8 @@
 #include "Core/Window.h"
 #include"Rendering\Graphics.h"
 #include"Core/GamePad.h"
+#include"Core/Application.h"
+#include"Core/Scene.h"
 
 #include"Debug.h"
 #include"Timer.h"
@@ -36,7 +38,7 @@ using namespace NeneLabyrinth::Resource;
 #include <vector>
 #include <array>
 
-#include "Component\Behavior.h"
+#include "Component\Object.h"
 #include "Component\Colldee.h"
 
 class SphereComp :
@@ -44,7 +46,7 @@ class SphereComp :
 {
 public:
 	SphereComp(
-		Component::Behavior& _owner,
+		Component::Object& _owner,
 		std::string _path) :
 		MeshColldee<Collision::Sphere>(_owner, typeid(SphereComp), _path)
 	{
@@ -53,19 +55,21 @@ public:
 	void Update() override
 	{
 		Colldee::Update();
-		Owner.GetComponent<Component::Transform>()->Position.x -= 0.001f;
+		auto& trans = Owner.GetComponent<Component::Transform>();
+		trans->Position.x -= 0.001f;
+		trans->Rotation.y = timeGetTime() / 100.0f;
 	}
-	void OnTriggerEnter(Component::Behavior*) override
+	void OnTriggerEnter(Component::Object*) override
 	{
 		___LOG("OnTriggerEnter");
 	};
-	void OnTriggerStay(Component::Behavior*) override
+	void OnTriggerStay(Component::Object*) override
 	{
 		___LOG("OnTriggerStay");
 
 
 	};
-	void OnTriggerExit(Component::Behavior*) override
+	void OnTriggerExit(Component::Object*) override
 	{
 		___LOG("OnTriggerExit");
 
@@ -79,96 +83,61 @@ class BoxComp :
 {
 public:
 	BoxComp(
-		Component::Behavior& _owner,
+		Component::Object& _owner,
 		std::string _path) :
 		MeshColldee<Collision::OBB>(_owner, typeid(BoxComp), _path)
 	{
 	}
-
+	void Update() override
+	{
+		Colldee::Update();
+		auto& trans = Owner.GetComponent<Component::Transform>();
+		trans->Rotation.y = timeGetTime() / 100.0f;
+	}
 };
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
+class Sample :
+	public Core::Scene
 {
-	try
+	Core::GamePad pad;
+public:
+	void Initialize() override
 	{
-		Core::Window window(
-			hInstance,
-			"NeneLabyrinth",
-			"NeneLabyrinth",
-			640,
-			480);
-		window.Create();
+		auto& box = Instantiate<Component::Object>();
+		auto& transform = box->AddComponent<Component::Transform>();
+		auto& boxRender = box->AddComponent < Component::MeshRender >("box.object", "Simple.hlsl");
+		box->AddComponent<BoxComp>("box.object");
+		box->Name = "box";
 
-		auto& graphics = Rendering::Graphics::Instantiate();
-		graphics.Initialize(window, 640, 480);
-
-		Core::GamePad pad;
-
-		Debug::Instantiate().ActivateDebugConsole();
-		Debug::Instantiate().IsUseOutputLog = true;
-		Debug::Instantiate().IsUseVSDebugOutput = true;
-		___D_LOG("TestLog");
-
-
-		Component::Behavior box;
-		auto& transform = box.AddComponent<Component::Transform>();
-		auto& boxRender = box.AddComponent < Component::MeshRender >("box.object", "Simple.hlsl");
-		box.AddComponent<BoxComp>("box.object");
-
-		Component::Behavior sphereObj;
-		auto& transform2 = sphereObj.AddComponent<Component::Transform>();
-		auto& sphereRender = sphereObj.AddComponent <Component::MeshRender>("sphere.object", "Simple.hlsl");
-		sphereObj.AddComponent<SphereComp>("sphere.object");
-
+		auto& sphereObj = Instantiate<Component::Object>();
+		auto& transform2 = sphereObj->AddComponent<Component::Transform>();
+		auto& sphereRender = sphereObj->AddComponent <Component::MeshRender>("sphere.object", "Simple.hlsl");
+		sphereObj->AddComponent<SphereComp>("sphere.object");
+		sphereObj->Name = "shpere";
 
 		transform2->Position.x += 3;
 
-		Component::Behavior cameraObj;
-		auto& cameraTransform = cameraObj.AddComponent<Component::Transform>();
-		auto& camera = cameraObj.AddComponent<Component::Camera>();
+		auto& cameraObj = Instantiate<Component::Object>();;
+		auto& cameraTransform = cameraObj->AddComponent<Component::Transform>();
+		auto& camera = cameraObj->AddComponent<Component::Camera>();
 
 		cameraTransform->Position.z -= 10;
+	}
 
-		while (!window.IsReceiveQuitMessage())
-		{
-			pad.UpdateInputState();
+	void Updata() override
+	{
+		pad.UpdateInputState();
+	}
+};
 
-			if (pad.IsInput(pad.A))
-			{
-			}
-
-			if (pad.IsDown(pad.LeftStickLeft))
-			{
-				break;
-			}
-
-
-			//DO Update
-			Component::CameraProvider::Instantiate().Dispatch();
-
-
-			transform->Rotation.y = timeGetTime() / 100.0f;
-			transform2->Rotation.y = timeGetTime() / 100.0f;
-			//transform2->Position.x -= 0.0004f;
-
-			Component::BehaviorProvider::Instantiate().Dispatch();
-			Collision::CollisionProvider::Instantiate().Dispatch();
-			//obb.Update(*transform.get());
-			//sphere.Update(*transform2.get());
-
-			//D3DXVECTOR4 color(1, 0.5, 1, 1);
-			//if (IsCollision(obb, sphere))
-			//{
-			//	color = { 0,1,1,1 };
-			//}
-
-			graphics.ClearBackBuffer();
-
-
-			Rendering::RenderProvider::Instantiate().Dispatch();
-
-			graphics.Presetnt();
-		}
+int WINAPI WinMain(HINSTANCE _hInstance, HINSTANCE, LPSTR, int)
+{
+	try
+	{
+		auto& app = Core::Application::Instantiate();
+		app.SetUp(_hInstance, 640, 480);
+		app.OnLoad<Sample>();
+		app.Execute();
 	}
 	catch (Exception* _e)
 	{
@@ -183,7 +152,5 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
 	{
 		___LOG("不明なエラー終了");
 	}
-	SingletonFinalizer::Finalize();
-
 	return 0;
 }

@@ -50,7 +50,7 @@ namespace NeneLabyrinth
 				0, &pFeatureLevels, 1, D3D11_SDK_VERSION, &sd, &pSwapChain, &pDevice,
 				pFeatureLevel, &pDeviceContext)))
 			{
-				___THROW_EXCEPTION(Utility::Exception, "D3D11CreateDeviceAndSwapChainに失敗");
+				___THROW_EXCEPTION_POINT(Utility::Exception, "D3D11CreateDeviceAndSwapChainに失敗");
 			}
 
 			//バックバッファからテクスチャ取得

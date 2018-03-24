@@ -10,8 +10,8 @@ namespace NeneLabyrinth
 	namespace Component
 	{
 
-		MeshRender::MeshRender(Behavior& _owner, std::string _path, std::string _shaderPath) :
-			IBehavior(_owner, typeid(MeshRender)),
+		MeshRender::MeshRender(Object& _owner, std::string _path, std::string _shaderPath) :
+			Behavior(_owner, typeid(MeshRender)),
 			shader(_shaderPath)
 		{
 			spMeshEntity = Resource::Service::Instantiate().CreateEntity<Entity::Mesh>(_path);

@@ -11,13 +11,13 @@ namespace NeneLabyrinth
 	namespace Component
 	{
 		class Camera :
-			public Component::IBehavior,
+			public Component::Behavior,
 			public IView
 		{
 			D3DXMATRIX View;
 			D3DXMATRIX Proj;
 		public:
-			Camera(Behavior& _owner);
+			Camera(Object& _owner);
 			~Camera();
 
 			void Update() override;

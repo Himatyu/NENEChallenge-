@@ -6,10 +6,10 @@ namespace NeneLabyrinth
 	namespace Component
 	{
 		IColldee::IColldee(
-			Behavior& _owner,
+			Object& _owner,
 			std::type_index _type,
 			Collision::IShape * _pShape) :
-			IBehavior(_owner, _type),
+			Behavior(_owner, _type),
 			pColldeShape(_pShape)
 		{
 			Collision::CollisionProvider::Instantiate().Register(this);

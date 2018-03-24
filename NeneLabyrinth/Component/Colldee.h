@@ -2,7 +2,7 @@
 #include"../Collision/Collider.h"
 #include"../Collision/Shape.h"
 #include"../Resource/Entity/Mesh.h"
-#include"../Component/Behavior.h"
+#include"../Component/Object.h"
 #include"../Component/Transform.h"
 
 namespace NeneLabyrinth
@@ -10,22 +10,22 @@ namespace NeneLabyrinth
 	namespace Component
 	{
 		class IColldee :
-			public Component::IBehavior
+			public Component::Behavior
 		{
 			Collision::IShape* pColldeShape;
 		public:
 			PROPERTY(pColldeShape, pShape, Collision::IShape*);
 
-			IColldee(Behavior&, std::type_index, Collision::IShape*);
+			IColldee(Object&, std::type_index, Collision::IShape*);
 			virtual ~IColldee();
 
-			virtual void OnCollisionEnter(Component::Behavior*) = 0;
-			virtual void OnCollisionStay(Component::Behavior*) = 0;
-			virtual void OnCollisionExit(Component::Behavior*) = 0;
+			virtual void OnCollisionEnter(Component::Object*) = 0;
+			virtual void OnCollisionStay(Component::Object*) = 0;
+			virtual void OnCollisionExit(Component::Object*) = 0;
 
-			virtual void OnTriggerEnter(Component::Behavior*) = 0;
-			virtual void OnTriggerStay(Component::Behavior*) = 0;
-			virtual void OnTriggerExit(Component::Behavior*) = 0;
+			virtual void OnTriggerEnter(Component::Object*) = 0;
+			virtual void OnTriggerStay(Component::Object*) = 0;
+			virtual void OnTriggerExit(Component::Object*) = 0;
 		};
 
 		template<class T>
@@ -35,17 +35,17 @@ namespace NeneLabyrinth
 		protected:
 			T BounsVolume;
 		public:
-			Colldee(Behavior&, std::type_index);
+			Colldee(Object&, std::type_index);
 			virtual ~Colldee();
 			virtual void Update() override;
 
-			virtual void OnCollisionEnter(Component::Behavior*) override {};
-			virtual void OnCollisionStay(Component::Behavior*) override {};
-			virtual void OnCollisionExit(Component::Behavior*) override {};
+			virtual void OnCollisionEnter(Component::Object*) override {};
+			virtual void OnCollisionStay(Component::Object*) override {};
+			virtual void OnCollisionExit(Component::Object*) override {};
 
-			virtual void OnTriggerEnter(Component::Behavior*) override {};
-			virtual void OnTriggerStay(Component::Behavior*) override {};
-			virtual void OnTriggerExit(Component::Behavior*) override {};
+			virtual void OnTriggerEnter(Component::Object*) override {};
+			virtual void OnTriggerStay(Component::Object*) override {};
+			virtual void OnTriggerExit(Component::Object*) override {};
 		};
 
 		template<class T>
@@ -54,11 +54,9 @@ namespace NeneLabyrinth
 		{
 			std::shared_ptr< Resource::Entity::Mesh> entity;
 		public:
-			MeshColldee(Behavior&, std::type_index, std::string);
+			MeshColldee(Object&, std::type_index, std::string);
 		};
 
 #include"Colldee.inl"
-
-
 	}
 }

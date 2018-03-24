@@ -1,6 +1,6 @@
 #include "Colldee.h"
 template<class T>
-inline Colldee<T>::Colldee(Behavior & _owner, std::type_index _type) :
+inline Colldee<T>::Colldee(Object & _owner, std::type_index _type) :
 	IColldee(_owner, _type, &BounsVolume)
 {
 
@@ -19,7 +19,7 @@ inline void NeneLabyrinth::Component::Colldee<T>::Update()
 
 template<class T>
 inline MeshColldee<T>::MeshColldee(
-	Behavior & _owner, std::type_index _type, std::string _path) :
+	Object & _owner, std::type_index _type, std::string _path) :
 	Colldee(_owner, _type)
 {
 	auto& service = Service::Instantiate();
