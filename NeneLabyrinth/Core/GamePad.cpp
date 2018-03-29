@@ -1,5 +1,7 @@
 #include "GamePad.h"
+#include "Debug.h"
 #include<math.h>
+#include<string>
 
 #pragma comment (lib, "xinput.lib")
 namespace NeneLabyrinth
@@ -32,12 +34,12 @@ namespace NeneLabyrinth
 
 		bool GamePad::IsDown(Code _code)
 		{
-			return 0b01 && GetBitSignature(_code);
+			return 0b01 == GetBitSignature(_code);
 		}
 
 		bool GamePad::IsUp(Code _code)
 		{
-			return 0b10 && GetBitSignature(_code);
+			return 0b10 == GetBitSignature(_code);
 		}
 
 		bool GamePad::IsInput(Code _code)
