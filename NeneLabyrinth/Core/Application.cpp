@@ -6,6 +6,7 @@
 #include "../Provider/CameraProvider.h"
 #include "../Provider/CollisionProvider.h"
 #include "../Provider/RenderProvider.h"
+#include "TimerServer.h"
 
 namespace NeneLabyrinth
 {
@@ -65,6 +66,7 @@ namespace NeneLabyrinth
 			Component::CameraProvider::Instantiate().Dispatch();
 			Component::BehaviorProvider::Instantiate().Dispatch();
 			Collision::CollisionProvider::Instantiate().Dispatch();
+			Utility::TimerServer::Instantiate().Update();
 		}
 		void Application::DoRendering()
 		{
