@@ -148,6 +148,7 @@
     <ClCompile Include="Component\Camera.cpp" />
     <ClCompile Include="Component\IBehavior.cpp" />
     <ClCompile Include="Component\MeshRender.cpp" />
+    <ClCompile Include="Component\Rigidbody.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\GamePad.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Component\Colldee.h" />
     <ClInclude Include="Component\IBehavior.h" />
     <ClInclude Include="Component\MeshRender.h" />
+    <ClInclude Include="Component\Rigidbody.h" />
     <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\GamePad.h" />
