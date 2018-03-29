@@ -24,12 +24,14 @@
 #include"Resource\Service.h"
 #include"Component\Transform.h"
 #include"Component\Camera.h"
+#include"Component\Rigidbody.h"
 #include<vector>
 
 using namespace NeneLabyrinth;
 using namespace NeneLabyrinth::Utility;
 using namespace NeneLabyrinth::Utility::Estd;
 using namespace NeneLabyrinth::Resource;
+using namespace NeneLabyrinth::Component;
 
 #include <fstream>
 #include <iostream>
@@ -56,7 +58,6 @@ public:
 	{
 		Colldee::Update();
 		auto& trans = Owner.GetComponent<Component::Transform>();
-		trans->Position.x -= 0.001f;
 		trans->Rotation.y = timeGetTime() / 100.0f;
 	}
 	void OnTriggerEnter(Component::Object*) override
@@ -100,6 +101,7 @@ class Sample :
 	public Core::Scene
 {
 	Core::GamePad pad;
+	std::shared_ptr<Rigidbody> rigidbody;
 public:
 	void Initialize() override
 	{
@@ -112,7 +114,8 @@ public:
 		auto& sphereObj = Instantiate<Component::Object>();
 		auto& transform2 = sphereObj->AddComponent<Component::Transform>();
 		auto& sphereRender = sphereObj->AddComponent <Component::MeshRender>("sphere.object", "Simple.hlsl");
-		sphereObj->AddComponent<SphereComp>("sphere.object");
+		//sphereObj->AddComponent<SphereComp>("sphere.object");
+		rigidbody = sphereObj->AddComponent<Rigidbody>();
 		sphereObj->Name = "shpere";
 
 		transform2->Position.x += 3;
@@ -127,6 +130,9 @@ public:
 	void Updata() override
 	{
 		pad.UpdateInputState();
+
+		if (pad.IsUp(Core::GamePad::A))
+			rigidbody->AddForceImpulse(D3DXVECTOR3(-1, 0, 0));
 	}
 };
 
