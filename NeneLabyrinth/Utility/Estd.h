@@ -179,7 +179,7 @@ namespace NeneLabyrinth
 				{
 					if (_pred(*it))
 					{
-						_cont.erase(it++);
+						it = _cont.erase(it);
 					}
 					else
 					{

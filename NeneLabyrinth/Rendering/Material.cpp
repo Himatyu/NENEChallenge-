@@ -1,15 +1,27 @@
 #include "Material.h"
+#include "../Resource/Entity/Material.h"
+#include "../Resource/Service.h"
 
 namespace NeneLabyrinth
 {
 	namespace Rendering
 	{
-
-		Material::Material(Resource::Entity::Material & _entity, Shader & _shader) :
-			entity(_entity),
+		IMaterial::IMaterial(IShader & _shader) :
 			shader(_shader)
 		{
 
+		}
+
+		Material::Material(std::string _path, IShader& _shader) :
+			IMaterial(_shader)
+		{
+			auto spEntity = Resource::Service::Instantiate()
+				.CreateEntity<Resource::Entity::Material>(_path);
+
+			Diffuse = spEntity->Diffuse;
+			Ambient = spEntity->Ambient;
+			Specular = spEntity->Specular;
+			Emissive = spEntity->Emissive;
 		}
 
 		void Material::Apply()
@@ -18,6 +30,8 @@ namespace NeneLabyrinth
 
 			shader.Apply();
 		}
+
+
 	}
 }
 

@@ -37,6 +37,12 @@
     <Filter Include="Component">
       <UniqueIdentifier>{31a89fad-7039-4405-8972-93ed76d3abed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Provider">
+      <UniqueIdentifier>{4ce97269-2f7e-492d-9d9d-5f54fc5ad0a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{5ef0432e-5aab-4c0b-be30-8084df27a0ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -75,12 +81,6 @@
     <ClCompile Include="Rendering\Material.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\MeshRender.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Shader.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Resource\Entity\Material.cpp">
       <Filter>Resource\Entity</Filter>
     </ClCompile>
@@ -111,7 +111,28 @@
     <ClCompile Include="Component\IBehavior.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Behavior.cpp">
+    <ClCompile Include="Component\MeshRender.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Camera.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision\Shape.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Object.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Scene.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Colldee.cpp">
       <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
@@ -153,9 +174,6 @@
       <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Material.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\MeshRender.h">
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Shader.h">
@@ -206,21 +224,60 @@
     <ClInclude Include="Component\Transform.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Behavior.h">
+    <ClInclude Include="Component\MeshRender.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\IProvider.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Provider\RenderProvider.h">
+      <Filter>Provider</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Camera.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Provider\CameraProvider.h">
+      <Filter>Provider</Filter>
+    </ClInclude>
+    <ClInclude Include="Provider\BehaviorProvider.h">
+      <Filter>Provider</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\Shape.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision\Collider.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Colldee.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Provider\CollisionProvider.h">
+      <Filter>Provider</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Object.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Application.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Scene.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Utility\Singleton.inl">
       <Filter>Utility</Filter>
     </None>
-    <None Include="Resource\Entity\Shader.inl">
-      <Filter>Resource\Entity</Filter>
-    </None>
     <None Include="Rendering\Shader.inl">
       <Filter>Rendering</Filter>
     </None>
-    <None Include="Component\Behavior.inl">
+    <None Include="Collision\Collider.inl">
+      <Filter>Collision</Filter>
+    </None>
+    <None Include="Component\Colldee.inl">
+      <Filter>Component</Filter>
+    </None>
+    <None Include="Component\Object.inl">
       <Filter>Component</Filter>
     </None>
   </ItemGroup>

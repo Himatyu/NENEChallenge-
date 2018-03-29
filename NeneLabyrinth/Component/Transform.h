@@ -9,9 +9,9 @@ namespace NeneLabyrinth
 {
 	namespace Component
 	{
-		class Behavior;
+		class Object;
 		class Transform :
-			public IBehavior
+			public Behavior
 		{
 			D3DXMATRIX		world;
 
@@ -33,7 +33,7 @@ namespace NeneLabyrinth
 			D3DXVECTOR3 GetUp();
 			D3DXVECTOR3 GetForward();
 
-			Transform(Behavior&);
+			Transform(Object&);
 			void Update()override;
 
 		};

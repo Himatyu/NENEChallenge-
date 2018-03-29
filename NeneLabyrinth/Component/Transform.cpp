@@ -14,15 +14,15 @@ namespace NeneLabyrinth
 		}
 		D3DXVECTOR3 Transform::GetUp()
 		{
-			return D3DXVECTOR3(world._21, world._22, world._33);
+			return D3DXVECTOR3(world._21, world._22, world._23);
 		}
 		D3DXVECTOR3 Transform::GetForward()
 		{
 			return D3DXVECTOR3(world._31, world._32, world._33);
 		}
 
-		Transform::Transform(Behavior& _owner) :
-			IBehavior(_owner, typeid(Transform)),
+		Transform::Transform(Object& _owner) :
+			Behavior(_owner, typeid(Transform)),
 			position(0, 0, 0),
 			rotate(0, 0, 0),
 			scale(1, 1, 1)

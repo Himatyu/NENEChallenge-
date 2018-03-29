@@ -1,11 +1,11 @@
 
 template<class Type, class ...Param>
 inline std::shared_ptr<Type>
-Behavior::AddComponent(Param && ..._param)
+Object::AddComponent(Param && ..._param)
 {
 	//コンポーネントは第一引数にOwnerを必ず持つ
 	auto spCom =
-		std::make_shared<Type>(*this, _ std::forward<Param>(param)...);
+		std::make_shared<Type>(*this, std::forward<Param>(_param)...);
 
 	components.push_back(spCom);
 
@@ -13,7 +13,7 @@ Behavior::AddComponent(Param && ..._param)
 }
 
 template<class Type>
-inline void Behavior::RemoveComponents()
+inline void Object::RemoveComponents()
 {
 	if (!components.size())
 	{
@@ -26,7 +26,7 @@ inline void Behavior::RemoveComponents()
 
 template<class Type>
 inline std::shared_ptr<Type>
-Behavior::GetComponent()
+Object::GetComponent()
 {
 	if (!components.size())
 	{
@@ -47,7 +47,7 @@ Behavior::GetComponent()
 template<class Type>
 inline
 std::shared_ptr<Type>
-Behavior::GetComponentFromName
+Object::GetComponentFromName
 (std::string _name)
 {
 	auto searched = GetComponents<Type>();
@@ -75,7 +75,7 @@ Behavior::GetComponentFromName
 
 template<class Type>
 inline std::vector<std::shared_ptr<Type>>
-Behavior::GetComponents()
+Object::GetComponents()
 {
 	if (!components.size())
 	{
@@ -95,7 +95,7 @@ Behavior::GetComponents()
 
 
 template<class Type>
-inline bool Behavior::HasComponent()
+inline bool Object::HasComponent()
 {
 	if (!components.size())
 	{

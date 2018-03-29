@@ -142,15 +142,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Component\Behavior.cpp" />
+    <ClCompile Include="Collision\Shape.cpp" />
+    <ClCompile Include="Component\Colldee.cpp" />
+    <ClCompile Include="Component\Object.cpp" />
+    <ClCompile Include="Component\Camera.cpp" />
     <ClCompile Include="Component\IBehavior.cpp" />
+    <ClCompile Include="Component\MeshRender.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
+    <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\GamePad.cpp" />
+    <ClCompile Include="Core\Scene.cpp" />
     <ClCompile Include="Core\Window.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering\Graphics.cpp" />
     <ClCompile Include="Rendering\Material.cpp" />
-    <ClCompile Include="Rendering\MeshRender.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
     <ClCompile Include="Resource\Dao\Material.cpp" />
     <ClCompile Include="Resource\Dao\Mesh.cpp" />
@@ -169,15 +174,25 @@
     <ClCompile Include="Utility\TimerServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Component\Behavior.h" />
+    <ClInclude Include="Collision\Collider.h" />
+    <ClInclude Include="Collision\Shape.h" />
+    <ClInclude Include="Component\Object.h" />
+    <ClInclude Include="Component\Camera.h" />
+    <ClInclude Include="Component\Colldee.h" />
     <ClInclude Include="Component\IBehavior.h" />
+    <ClInclude Include="Component\MeshRender.h" />
     <ClInclude Include="Component\Transform.h" />
+    <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\GamePad.h" />
+    <ClInclude Include="Core\Scene.h" />
     <ClInclude Include="Core\Window.h" />
+    <ClInclude Include="Provider\BehaviorProvider.h" />
+    <ClInclude Include="Provider\CameraProvider.h" />
+    <ClInclude Include="Provider\CollisionProvider.h" />
+    <ClInclude Include="Provider\RenderProvider.h" />
     <ClInclude Include="Rendering\Graphics.h" />
     <ClInclude Include="Rendering\IRenderable.h" />
     <ClInclude Include="Rendering\Material.h" />
-    <ClInclude Include="Rendering\MeshRender.h" />
     <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="Resource\Dao\Base.h" />
     <ClInclude Include="Resource\Dao\Material.h" />
@@ -195,6 +210,7 @@
     <ClInclude Include="Utility\Estd.h" />
     <ClInclude Include="Utility\Exception.h" />
     <ClInclude Include="Utility\File.h" />
+    <ClInclude Include="Utility\IProvider.h" />
     <ClInclude Include="Utility\Macro.h" />
     <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="Utility\TextFile.h" />
@@ -202,9 +218,10 @@
     <ClInclude Include="Utility\TimerServer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Component\Behavior.inl" />
+    <None Include="Collision\Collider.inl" />
+    <None Include="Component\Object.inl" />
+    <None Include="Component\Colldee.inl" />
     <None Include="Rendering\Shader.inl" />
-    <None Include="Resource\Entity\Shader.inl" />
     <None Include="Utility\Singleton.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

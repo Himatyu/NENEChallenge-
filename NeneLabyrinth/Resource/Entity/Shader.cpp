@@ -1,5 +1,6 @@
 #include "Shader.h"
 #include "../Rendering/Graphics.h"
+#include "..\..\Rendering\Shader.h"
 
 namespace NeneLabyrinth
 {
@@ -12,6 +13,7 @@ namespace NeneLabyrinth
 			{
 				auto& graphics = Rendering::Graphics::Instantiate();
 				auto filePath = _spDto->filePath;
+
 				//Blobはデータバッファ
 				ID3DBlob *pCompiledShader = NULL;
 				ID3DBlob *pErrors = NULL;
@@ -40,25 +42,6 @@ namespace NeneLabyrinth
 				{
 					SAFE_RELEASE(pCompiledShader);
 					___THROW_EXCEPTION_POINT(Utility::Exception, "バーテックスシェーダー作成に失敗");
-				}
-
-				//今回は固定
-				D3D11_INPUT_ELEMENT_DESC layout[] =
-				{
-					{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-					{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-
-				};
-				UINT numElements = sizeof(layout) / sizeof(layout[0]);
-				//頂点インプットレイアウトを作成
-				if (FAILED(graphics.Device->CreateInputLayout(
-					layout,
-					numElements,
-					pCompiledShader->GetBufferPointer(),
-					pCompiledShader->GetBufferSize(),
-					&pVertexLayout)))
-				{
-					___THROW_EXCEPTION_POINT(Utility::Exception, "インプットレイアウト作成に失敗");
 				}
 
 				//ブロブからピクセルシェーダー作成
@@ -93,11 +76,8 @@ namespace NeneLabyrinth
 
 			Shader::~Shader()
 			{
-				SAFE_RELEASE(pConstantBuffer);
 				SAFE_RELEASE(pVertexShader);
 				SAFE_RELEASE(pPixelShader);
-				SAFE_RELEASE(pVertexLayout);
-
 			}
 		}
 	}
