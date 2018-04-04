@@ -25,7 +25,7 @@ namespace NeneLabyrinth
 #endif 
 
 #define ___LOG(_msg) \
-		::Utility::Debug::Instantiate().Log(_msg);
+		Utility::Debug::Instantiate().Log(_msg);
 
 		class TextFile;
 

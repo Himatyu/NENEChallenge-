@@ -135,6 +135,9 @@
     <ClCompile Include="Component\Colldee.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="Component\Rigidbody.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Window.h">
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="Core\Scene.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Rigidbody.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
