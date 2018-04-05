@@ -4,20 +4,37 @@
 #include"../Resource/Entity/Mesh.h"
 #include"../Component/Object.h"
 #include"../Component/Transform.h"
+#include"../Component/Rigidbody.h"
 
 namespace NeneLabyrinth
 {
+	namespace Collision
+	{
+		class CollisionProvider;
+	}
 	namespace Component
 	{
 		class IColldee :
 			public Component::Behavior
 		{
+			friend class ::NeneLabyrinth::Collision::CollisionProvider;
+
+			std::shared_ptr<Rigidbody> spRigidbody;
+
+			bool IsRigidbody();
+			PROPERTY(spRigidbody, Body, std::shared_ptr<Rigidbody>);
+
+		protected:
 			Collision::IShape* pColldeShape;
+			std::shared_ptr<Transform> spTransform;
+
 		public:
 			PROPERTY(pColldeShape, pShape, Collision::IShape*);
 
 			IColldee(Object&, std::type_index, Collision::IShape*);
 			virtual ~IColldee();
+
+			virtual void Update() override;
 
 			virtual void OnCollisionEnter(Component::Object*) = 0;
 			virtual void OnCollisionStay(Component::Object*) = 0;

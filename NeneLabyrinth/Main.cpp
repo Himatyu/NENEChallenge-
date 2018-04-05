@@ -58,7 +58,7 @@ public:
 	{
 		Colldee::Update();
 		auto& trans = Owner.GetComponent<Component::Transform>();
-		trans->Rotation.y = timeGetTime() / 100.0f;
+		//trans->Rotation.y = timeGetTime() / 100.0f;
 	}
 	void OnTriggerEnter(Component::Object*) override
 	{
@@ -93,7 +93,7 @@ public:
 	{
 		Colldee::Update();
 		auto& trans = Owner.GetComponent<Component::Transform>();
-		trans->Rotation.y = timeGetTime() / 100.0f;
+		//trans->Rotation.y = timeGetTime() / 100.0f;
 	}
 };
 
@@ -102,6 +102,7 @@ class Sample :
 {
 	Core::GamePad pad;
 	std::shared_ptr<Rigidbody> rigidbody;
+	std::shared_ptr<Rigidbody> rigidbody2;
 public:
 	void Initialize() override
 	{
@@ -109,22 +110,34 @@ public:
 		auto& transform = box->AddComponent<Component::Transform>();
 		auto& boxRender = box->AddComponent < Component::MeshRender >("box.object", "Simple.hlsl");
 		box->AddComponent<BoxComp>("box.object");
+		rigidbody2 = box->AddComponent<Rigidbody>();
+		rigidbody2->IsUseGravity = false;
+		rigidbody2->IsKinematic = true;
+		rigidbody2->Drag = 0.5f;
+		rigidbody2->Mass = 100;
+		rigidbody2->Bound = 0.5f;
 		box->Name = "box";
+		//transform->Position.y -= 3;
+		transform->Scale = D3DXVECTOR3(3, 0.5f, 3);
+		transform->Rotation.z = -45;
 
 		auto& sphereObj = Instantiate<Component::Object>();
 		auto& transform2 = sphereObj->AddComponent<Component::Transform>();
 		auto& sphereRender = sphereObj->AddComponent <Component::MeshRender>("sphere.object", "Simple.hlsl");
-		//sphereObj->AddComponent<SphereComp>("sphere.object");
+		sphereObj->AddComponent<SphereComp>("sphere.object");
 		rigidbody = sphereObj->AddComponent<Rigidbody>();
 		sphereObj->Name = "shpere";
+		rigidbody->IsUseGravity = true;
+		rigidbody->Drag = 0.5f;
+		rigidbody->Bound = 0.5f;
+		transform2->Position.y += 3;
 
-		transform2->Position.x += 3;
 
 		auto& cameraObj = Instantiate<Component::Object>();;
 		auto& cameraTransform = cameraObj->AddComponent<Component::Transform>();
 		auto& camera = cameraObj->AddComponent<Component::Camera>();
 
-		cameraTransform->Position.z -= 10;
+		cameraTransform->Position.z -= 20;
 	}
 
 	void Updata() override
@@ -132,7 +145,11 @@ public:
 		pad.UpdateInputState();
 
 		if (pad.IsUp(Core::GamePad::A))
-			rigidbody->AddForceImpulse(D3DXVECTOR3(-1, 0, 0));
+		{
+			rigidbody->AddForceImpulse(D3DXVECTOR3(-3, 0, 0));
+			rigidbody2->AddForceImpulse(D3DXVECTOR3(3, 0, 0));
+
+		}
 	}
 };
 
@@ -144,6 +161,7 @@ int WINAPI WinMain(HINSTANCE _hInstance, HINSTANCE, LPSTR, int)
 		app.SetUp(_hInstance, 640, 480);
 		app.OnLoad<Sample>();
 		app.Execute();
+		SingletonFinalizer::Finalize();
 	}
 	catch (Exception* _e)
 	{

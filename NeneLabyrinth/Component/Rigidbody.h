@@ -20,6 +20,7 @@ namespace NeneLabyrinth
 			bool isUseGravity;
 			float mass;
 			float drag;
+			float bound;
 
 		public:
 			PROPERTY_REF(velocity, Velocity, D3DXVECTOR3);
@@ -29,6 +30,7 @@ namespace NeneLabyrinth
 			PROPERTY_REF(isUseGravity, IsUseGravity, bool);
 			PROPERTY_REF(mass, Mass, float);
 			PROPERTY_REF(drag, Drag, float);
+			PROPERTY_REF(bound, Bound, float);
 
 			Rigidbody(
 				Component::Object& _owner);

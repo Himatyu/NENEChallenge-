@@ -39,6 +39,8 @@ namespace NeneLabyrinth
 			OBB(D3DXVECTOR3& _center, D3DXVECTOR3 _half);
 
 			float IsInside(const D3DXVECTOR3 & _point);
+			D3DXVECTOR3 GetDistance(const D3DXVECTOR3 & _point);
+			D3DXVECTOR3 GetNerNormalize(const D3DXVECTOR3 & _vec);
 			void Updata(std::shared_ptr<Component::Transform>) override;
 			void FormEntity(Resource::Entity::Mesh&) override;
 

@@ -17,7 +17,8 @@ namespace NeneLabyrinth
 			isKinematic(false),
 			isUseGravity(true),
 			mass(1.0f),
-			drag(0.0f)
+			drag(0.0f),
+			bound(0.5f)
 		{
 		}
 		void Rigidbody::AddForce(D3DXVECTOR3 & _force)
@@ -26,7 +27,7 @@ namespace NeneLabyrinth
 		}
 		void Rigidbody::AddForceImpulse(D3DXVECTOR3 & _force)
 		{
-			velocity += _force*mass;
+			velocity += _force / mass;
 		}
 		void Rigidbody::Update()
 		{
