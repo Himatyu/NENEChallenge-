@@ -20,6 +20,22 @@ namespace NeneLabyrinth
 			Collision::CollisionProvider::Instantiate().UnRegister(this);
 		}
 
+		bool IColldee::IsRigidbody()
+		{
+			return spRigidbody != nullptr;
+		}
+
+		void IColldee::Update()
+		{
+			if (spRigidbody == nullptr)
+			{
+				spRigidbody = Owner.GetComponent<Rigidbody>();
+			}
+			if (spTransform == nullptr)
+			{
+				spTransform = Owner.GetComponent<Transform>();
+			}
+		}
 
 	}
 }

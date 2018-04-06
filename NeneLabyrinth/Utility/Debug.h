@@ -15,7 +15,7 @@ namespace NeneLabyrinth
 		Debug::Instance().function(__VA_ARGS__);
 
 #define	___D_LOG(_msg) \
-		::Utility::Debug::Instantiate().Log(_msg);
+		::NeneLabyrinth::Utility::Debug::Instantiate().Log(_msg);
 
 #else
 

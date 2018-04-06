@@ -45,6 +45,18 @@ namespace NeneLabyrinth
 
 		float OBB::IsInside(const D3DXVECTOR3 & _point)
 		{
+			D3DXVECTOR3 outer = GetDistance(_point);
+
+			if (outer == D3DXVECTOR3(0, 0, 0))
+			{
+				return -1;
+			}
+
+			return D3DXVec3Length(&outer);
+		}
+
+		D3DXVECTOR3 OBB::GetDistance(const D3DXVECTOR3 & _point)
+		{
 			D3DXVECTOR3 outer = D3DXVECTOR3(0, 0, 0);
 
 			for (int i = 0; i < 3; i++)
@@ -63,13 +75,35 @@ namespace NeneLabyrinth
 
 				outer += (1 - scaleHalf) * halfLen * localAxis[i];
 			}
+			return outer;
+		}
 
-			if (outer == D3DXVECTOR3(0, 0, 0))
+		D3DXVECTOR3 OBB::GetNerNormalize(const D3DXVECTOR3 & _vec)
+		{
+			std::array<D3DXVECTOR3, 6> normals;
+			normals[0] = localAxis[0];
+			normals[1] = localAxis[1];
+			normals[2] = localAxis[2];
+			normals[3] = -localAxis[0];
+			normals[4] = -localAxis[1];
+			normals[5] = -localAxis[2];
+
+			D3DXVECTOR3 result;
+			D3DXVECTOR3 normaled;
+			D3DXVec3Normalize(&normaled, &_vec);
+
+			float dot = 0;
+			for (auto& v : normals)
 			{
-				return -1;
-			}
+				auto d = D3DXVec3Dot(&v, &normaled);
 
-			return D3DXVec3Length(&outer);
+				if (d > dot)
+				{
+					dot = d;
+					result = v;
+				}
+			}
+			return result;
 		}
 
 		void OBB::Updata(std::shared_ptr<Component::Transform> _spTransform)
@@ -79,7 +113,10 @@ namespace NeneLabyrinth
 			auto rotateVec = _spTransform->Rotation;
 			D3DXMATRIX rotate;
 			D3DXMatrixIdentity(&rotate);
-			D3DXMatrixRotationYawPitchRoll(&rotate, rotateVec.y, rotateVec.x, rotateVec.z);
+			D3DXMatrixRotationYawPitchRoll(&rotate,
+				D3DXToRadian(rotateVec.y),
+				D3DXToRadian(rotateVec.x),
+				D3DXToRadian(rotateVec.z));
 
 			D3DXVECTOR4 rotatedX;
 			D3DXVECTOR4 rotatedY;
@@ -93,9 +130,9 @@ namespace NeneLabyrinth
 			localAxis[2] = { rotatedZ.x,rotatedZ.y,rotatedZ.z };
 
 			auto crrentScale = _spTransform->Scale;
-			half.x *= (prevScale.x / crrentScale.x);
-			half.y *= (prevScale.y / crrentScale.y);
-			half.z *= (prevScale.z / crrentScale.z);
+			half.x *= (crrentScale.x / prevScale.x);
+			half.y *= (crrentScale.y / prevScale.y);
+			half.z *= (crrentScale.z / prevScale.z);
 
 			prevScale = crrentScale;
 		}

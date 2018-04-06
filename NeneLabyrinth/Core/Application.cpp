@@ -16,7 +16,6 @@ namespace NeneLabyrinth
 		Application::~Application()
 		{
 			SAFE_DELETE(pWindow);
-			SingletonFinalizer::Finalize();
 		}
 
 		void Application::SetUp(

@@ -13,7 +13,13 @@ inline Colldee<T>::~Colldee()
 template<class T>
 inline void NeneLabyrinth::Component::Colldee<T>::Update()
 {
-	auto spTransform = Owner.GetComponent<Component::Transform>();
+	IColldee::Update();
+
+	if (spTransform == nullptr)
+	{
+		return;
+	}
+
 	BounsVolume.Updata(spTransform);
 }
 
